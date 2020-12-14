@@ -1,0 +1,95 @@
+body {
+    background-color: cadetblue;
+    font-family: 'Roboto', sans-serif;
+}
+
+header {
+    text-align: center;
+    font-size: larger;
+}
+
+main #divDisks label{
+    display: block;
+}
+main #divMovements label{
+    display: block;
+}
+
+#menu {
+    margin-bottom: 3rem;
+}
+
+label {
+    display: inline-block;
+}
+
+input {}
+
+button {}
+
+section {
+    display: flex;
+    justify-content: space-around;
+}
+
+#start {
+    display: flex; 
+    flex-direction: column-reverse; 
+    align-items: center;
+}
+
+.tower {
+    background-color: black;
+    width: 15px;
+    height: 450px;
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+}
+
+.disk {
+    height: 45px;
+    border: 3px solid black;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.disk8 {
+    width: 19rem;
+    background-color: red;
+}
+
+.disk7 {
+    width: 17rem;
+    background-color: blue;
+}
+
+.disk6 {
+    width: 15rem;
+    background-color: green;
+}
+
+.disk5 {
+    width: 13rem;
+    background-color: yellow;
+}
+
+.disk4 {
+    width: 11rem;
+    background-color: orange;
+}
+
+.disk3 {
+    width: 9rem;
+    background-color: gray;
+}
+
+.disk2 {
+    width: 7rem;
+    background-color: pink;
+}
+
+.disk1 {
+    width: 5rem;
+    background-color: brown;
+}
