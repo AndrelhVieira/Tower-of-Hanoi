@@ -124,4 +124,6 @@ changeTower.addEventListener('click', function (e) {
         newTower(disc, cTower);
         state = cutState;
     };
+
+    // TESTE
 });
