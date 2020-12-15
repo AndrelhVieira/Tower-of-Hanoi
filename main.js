@@ -40,22 +40,8 @@ const startGame = () => {
     startBtn.setAttribute('disabled', 'disabled');
 }
 
-// Guarda o nó da torre clicada
-const currentTower = (click) => {
-    if (click.classList.contains('disk')) {
-        parentClick = click.parentNode;
-        targetClicked = parentClick.lastElementChild;
-    } else {
-        targetClicked = click.lastElementChild;
-    }
-
-    console.log(targetClicked);
-
-    return targetClicked;
-}
-
-// verificar se o nó clicado é a Torre ou um disco
-const conditionsClick = (a) => {
+// verificar se o nó clicado é a Torre
+const isTower = (a) => {
     let output = false;
 
     if (a.hasAttribute('id', 'start')) {
@@ -73,14 +59,28 @@ const conditionsClick = (a) => {
     return output
 }
 
-// Acopla o nó escolhido no primeiro clique para a segunda torre
-// Refatorar
+// Guarda o nó da torre clicada
+const currentTower = (click) => {
+
+    if (isTower(click)) {
+        targetClicked = click.lastElementChild;
+    } else {
+        parentClick = click.parentNode;
+        targetClicked = parentClick.lastElementChild;
+    }
+
+    console.log(targetClicked);
+
+    return targetClicked;
+}
+
+// Acopla o nó escolhido na torre
 const newTower = (click, cTower) => {
 
-    if (conditionsClick(click)) {
+    if (isTower(click)) {
         click.appendChild(cTower);
     } else {
-        let parentClick = click.parentNode;
+        parentClick = click.parentNode;
         parentClick.appendChild(cTower);
     }
 
@@ -102,27 +102,32 @@ changeTower.addEventListener('click', function (e) {
     target = e.target;
 
     if (target.tagName !== 'DIV') {
+        console.log('condição 1');
         return
     }
 
-    if (target === cTower || target.parentNode === cTower){
-        return;
+    if (target === cTower || target.parentNode === cTower) {
+        console.log('condição 2');
+        state = cutState;
     }
 
-    if (target.clientWidth === towerWidth){
-        if (target.lastElementChild !== null && target.lastElementChild.clientWidth < cTowerWidth){
-            return
+    if (target.clientWidth === towerWidth) {
+        if (target.lastElementChild !== null && target.lastElementChild.clientWidth < cTowerWidth) {
+            console.log('condição 3');
+            state = cutState;
         }
     }
 
-    if (target.clientWidth !== towerWidth && target.clientWidth < cTowerWidth){
-        return
+    if (target.clientWidth !== towerWidth && target.clientWidth < cTowerWidth) {
+        console.log('condição 4');
+        state = cutState;
     }
 
     console.log(state)
     if (state === cutState) {
         cTower = currentTower(target);
         if (cTower === null) {
+            console.log('condição 5');
             return
         }
         state = pasteState;
