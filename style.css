@@ -1,11 +1,12 @@
 body {
     background-color: cadetblue;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Nunito', sans-serif;
 }
 
 header {
     text-align: center;
     font-size: larger;
+    font-family: 'Roboto', sans-serif;
 }
 
 main #divDisks label {
@@ -24,10 +25,6 @@ main #divMovements label {
 label {
     display: inline-block;
 }
-
-input {}
-
-button {}
 
 #towers {
     display: flex;
