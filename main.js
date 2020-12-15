@@ -1,9 +1,9 @@
 // const newTower = (click, cTower) => {
 
 //     parentClick = click.parentNode;
-    
+
 //     let conditionsTrueParent = parentClick.hasAttribute('id', 'start') || parentClick.hasAttribute('id', 'offset') || parentClick.hasAttribute('id', 'end');
-    
+
 //     let conditionsTrueClick = click.hasAttribute('id', 'start') || click.hasAttribute('id', 'offset') || click.hasAttribute('id', 'end');
 //     // let conditionsTrue = conditionsTrueParent || conditionsTrueClick;
 
@@ -18,14 +18,20 @@
 
 ////////////////////////////////////////////////////////////////////////////////////
 // VARIÁVEIS
+const tower = document.querySelector('.tower');
+const towerWidth = tower.clientWidth;
 const start = document.getElementById('start');
 const offset = document.getElementById('offset');
 const end = document.getElementById('end');
+const restartBtn = document.getElementById('restart');
+const startBtn = document.getElementById('startGameBtn');
+const changeTower = document.querySelector('section#towers');
 const cutState = 1;
 const pasteState = 2;
 let state = cutState;
 let cTower = '';
 let cTowerWidth = 0;
+let disc;
 
 // FUNÇÕES
 // Cria nova div com a classe de estilização definida
@@ -61,24 +67,24 @@ const currentTower = (click) => {
     } else {
         targetClicked = click.lastElementChild;
     }
-    
+
     console.log(targetClicked);
 
     return targetClicked;
 }
 
-const conditionsTrueClick = (a) => {
+const conditionsClick = (a) => {
     let output = false;
 
-    if (a.hasAttribute('id', 'start')){
+    if (a.hasAttribute('id', 'start')) {
         output = true;
     }
 
-    if (a.hasAttribute('id', 'offset')){
+    if (a.hasAttribute('id', 'offset')) {
         output = true;
     }
 
-    if (a.hasAttribute('id', 'end')){
+    if (a.hasAttribute('id', 'end')) {
         output = true;
     }
 
@@ -89,41 +95,58 @@ const conditionsTrueClick = (a) => {
 // Refatorar
 const newTower = (click, cTower) => {
 
-    pasteClick = click;
-
-    if (conditionsTrueClick(pasteClick)){
-        pasteClick.appendChild(cTower);
+    if (conditionsClick(click)) {
+        click.appendChild(cTower);
     } else {
-        let parentClick = pasteClick.parentNode;
+        let parentClick = click.parentNode;
         parentClick.appendChild(cTower);
     }
+
     console.log(click)
 };
 
+const restartGame = () => {
+    location.reload();
+}
+
 // EVENTOS
-const startBtn = document.getElementById('startGameBtn');
+
 startBtn.addEventListener('click', startGame);
 
-const changeTower = document.querySelector('section#towers');
-changeTower.addEventListener('click', function (e) {
-    const disc = e.target;
+restartBtn.addEventListener('click', restartGame);
 
-    if (disc.tagName !== 'DIV') {
+changeTower.addEventListener('click', function (e) {
+    target = e.target;
+
+    if (target.tagName !== 'DIV') {
         return
     }
 
-    console.log(state);
+    if (target === cTower || target.parentNode === cTower){
+        return;
+    }
+
+    if (target.clientWidth === towerWidth){
+        if (target.lastElementChild !== null && target.lastElementChild.clientWidth < cTowerWidth){
+            return
+        }
+    }
+
+    if (target.clientWidth !== towerWidth && target.clientWidth < cTowerWidth){
+        return
+    }
+
+    console.log(state)
     if (state === cutState) {
-        cTower = currentTower(disc);
+        cTower = currentTower(target);
         if (cTower === null) {
             return
-        } 
+        }
         state = pasteState;
         cTowerWidth = cTower.clientWidth;
     } else {
-        newTower(disc, cTower);
+        newTower(target, cTower);
         state = cutState;
+        cTowerWidth = 0;
     };
-
-    // TESTE
 });

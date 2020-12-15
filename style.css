@@ -18,6 +18,7 @@ main #divMovements label {
 
 #menu {
     margin-bottom: 3rem;
+    display: flex;
 }
 
 label {
