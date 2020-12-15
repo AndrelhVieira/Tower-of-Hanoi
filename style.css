@@ -8,10 +8,11 @@ header {
     font-size: larger;
 }
 
-main #divDisks label{
+main #divDisks label {
     display: block;
 }
-main #divMovements label{
+
+main #divMovements label {
     display: block;
 }
 
@@ -33,8 +34,8 @@ section {
 }
 
 #start {
-    display: flex; 
-    flex-direction: column-reverse; 
+    display: flex;
+    flex-direction: column-reverse;
     align-items: center;
 }
 
