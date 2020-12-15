@@ -1,22 +1,3 @@
-// const newTower = (click, cTower) => {
-
-//     parentClick = click.parentNode;
-
-//     let conditionsTrueParent = parentClick.hasAttribute('id', 'start') || parentClick.hasAttribute('id', 'offset') || parentClick.hasAttribute('id', 'end');
-
-//     let conditionsTrueClick = click.hasAttribute('id', 'start') || click.hasAttribute('id', 'offset') || click.hasAttribute('id', 'end');
-//     // let conditionsTrue = conditionsTrueParent || conditionsTrueClick;
-
-//     if (conditionsTrueClick) {
-//         click.appendChild(cTower);
-//     } else if (conditionsTrueParent) {
-//         parentClick.appendChild(cTower);
-//     };
-
-//     console.log(click)
-// };
-
-////////////////////////////////////////////////////////////////////////////////////
 // VARIÁVEIS
 const tower = document.querySelector('.tower');
 const towerWidth = tower.clientWidth;
@@ -73,6 +54,7 @@ const currentTower = (click) => {
     return targetClicked;
 }
 
+// verificar se o nó clicado é a Torre ou um disco
 const conditionsClick = (a) => {
     let output = false;
 
@@ -105,6 +87,7 @@ const newTower = (click, cTower) => {
     console.log(click)
 };
 
+// Dá um restart no game;
 const restartGame = () => {
     location.reload();
 }
