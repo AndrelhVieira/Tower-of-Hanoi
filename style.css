@@ -28,15 +28,32 @@ input {}
 
 button {}
 
-section {
+#towers {
     display: flex;
     justify-content: space-around;
 }
 
-#start {
-    display: flex;
-    flex-direction: column-reverse;
+#start-box, #offset-box, #end-box {
+    background-color: #999;
+    width: 30%;
+    border: 1px solid black;
+}
+
+#start, #offset, #end {
+    display: flex; 
+    flex-direction: column-reverse; 
     align-items: center;
+    margin: 0 auto;
+}
+
+.bar-title {
+    display: flex;
+    justify-content: space-around;
+    font-size: 2rem;
+}
+
+.title-shadow {
+    text-shadow: 2px 2px 8px red;
 }
 
 .tower {
