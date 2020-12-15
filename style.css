@@ -9,22 +9,20 @@ header {
     font-family: 'Roboto', sans-serif;
 }
 
-main #divDisks label {
-    display: block;
-}
-
-main #divMovements label {
-    display: block;
-}
-
 #menu {
     margin-bottom: 3rem;
     display: flex;
 }
 
+<<<<<<< HEAD
 label {
     display: inline-block;
 }
+=======
+input {}
+
+button {}
+>>>>>>> a4c1b6593fcad7ba41bb32ea5a6ae17587836f2d
 
 #towers {
     display: flex;
@@ -48,10 +46,6 @@ label {
     display: flex;
     justify-content: space-around;
     font-size: 2rem;
-}
-
-.title-shadow {
-    text-shadow: 2px 2px 8px red;
 }
 
 .tower {
