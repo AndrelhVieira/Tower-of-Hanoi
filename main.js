@@ -13,6 +13,9 @@ let state = cutState;
 let cTower = '';
 let cTowerWidth = 0;
 let disc;
+let winningCombination = [];
+let endCombination = [];
+
 
 // FUNÇÕES
 // Cria nova div com a classe de estilização definida
@@ -22,14 +25,15 @@ const startDiscs = (n) => {
     newDisc.classList.add('disk')
     newDisc.classList.add('disk' + n);
     start.appendChild(newDisc);
-}
+};
 
 // Inicia o game e gera o número de discos escolhidos
 const startGame = () => {
     start.innerHTML = "";
 
-    if (numberOfDisks.value > 8) {
-        alert('Escolha um valor entre 3 e 8!');
+    if (numberOfDisks.value > 8 || numberOfDisks.value < 3) {
+        alert('Please, pick a number between 3 and 8!');
+        numberOfDisks.value = 5;
         return;
     }
 
@@ -37,8 +41,10 @@ const startGame = () => {
         startDiscs(i);
     }
 
+    winningArray();
+
     startBtn.setAttribute('disabled', 'disabled');
-}
+};
 
 // verificar se o nó clicado é a Torre
 const isTower = (a) => {
@@ -57,7 +63,7 @@ const isTower = (a) => {
     }
 
     return output
-}
+};
 
 // Guarda o nó da torre clicada
 const currentTower = (click) => {
@@ -72,7 +78,7 @@ const currentTower = (click) => {
     console.log(targetClicked);
 
     return targetClicked;
-}
+};
 
 // Acopla o nó escolhido na torre
 const newTower = (click, cTower) => {
@@ -89,8 +95,20 @@ const newTower = (click, cTower) => {
 
 // Dá um restart no game;
 const restartGame = () => {
-    location.reload();
-}
+    start.innerHTML = '';
+    offset.innerHTML = '';
+    end.innerHTML = '';
+    numberOfDisks.value = 5;
+    startBtn.removeAttribute('disabled');
+};
+
+// Define a condição de vitória
+const playerWins = () => {
+    if (end.childElementCount == numberOfDisks.value){
+        setTimeout(function(){alert('You won!'); },20)
+        setTimeout(restartGame, 5000);
+    }
+};
 
 // EVENTOS
 
@@ -102,24 +120,24 @@ changeTower.addEventListener('click', function (e) {
     target = e.target;
 
     if (target.tagName !== 'DIV') {
-        console.log('condição 1');
+        console.log('erro 1');
         return
     }
 
     if (target === cTower || target.parentNode === cTower) {
-        console.log('condição 2');
+        console.log('erro 2');
         state = cutState;
     }
 
     if (target.clientWidth === towerWidth) {
         if (target.lastElementChild !== null && target.lastElementChild.clientWidth < cTowerWidth) {
-            console.log('condição 3');
+            console.log('erro 3');
             state = cutState;
         }
     }
 
     if (target.clientWidth !== towerWidth && target.clientWidth < cTowerWidth) {
-        console.log('condição 4');
+        console.log('erro 4');
         state = cutState;
     }
 
@@ -127,7 +145,7 @@ changeTower.addEventListener('click', function (e) {
     if (state === cutState) {
         cTower = currentTower(target);
         if (cTower === null) {
-            console.log('condição 5');
+            console.log('erro 5');
             return
         }
         state = pasteState;
@@ -137,4 +155,6 @@ changeTower.addEventListener('click', function (e) {
         state = cutState;
         cTowerWidth = 0;
     };
+
+    playerWins();
 });
