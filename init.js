@@ -28,11 +28,41 @@ const buildMenu = () => {
     restartBtn.setAttribute('id', 'restart');
     restartBtn.innerHTML = 'Restart Game';
 
+    const movementLabel = document.createElement('span');
+    movementLabel.setAttribute('id', 'movementLabel');
+    movementLabel.innerHTML = 'Movements:';
+
+    const movementCount = document.createElement('span');
+    movementCount.setAttribute('id', 'movementCount');
+    movementCount.innerHTML = 0;
+
+    const victoryLabel = document.createElement('span');
+    victoryLabel.setAttribute('id', 'victoryLabel');
+    victoryLabel.innerHTML = 'Victories:';
+
+    const victoryCount = document.createElement('span');
+    victoryCount.setAttribute('id', 'victoryCount');
+    victoryCount.innerHTML = 0;
+
     divDivDisks.appendChild(labelDivDisks);
     divDivDisks.appendChild(inputDivDisks);
     divDivDisks.appendChild(btnDivDisks);
     divDivDisks.appendChild(restartBtn);
+    divDivDisks.appendChild(movementLabel);
+    divDivDisks.appendChild(movementCount);
+    divDivDisks.appendChild(victoryLabel);
+    divDivDisks.appendChild(victoryCount);
     divMenu.appendChild(divDivDisks);
+    
+    ////////////////////////////////////////////////////
+
+    const message = document.createElement('div');
+    message.setAttribute('id', 'message');
+
+    const br = document.createElement('br');
+
+    message.appendChild(br);
+
     ////////////////////////////////////////////////////
 
     const secTowers = document.createElement('section');
@@ -53,6 +83,7 @@ const buildMenu = () => {
     secTowers.appendChild(divStart);
     secTowers.appendChild(divOffset);
     secTowers.appendChild(divEnd);
+
     ////////////////////////////////////////////////////
 
     const divBarTitle = document.createElement('div');
@@ -74,6 +105,7 @@ const buildMenu = () => {
     ///////////////////////////////////////////////////
 
     main.appendChild(divMenu);
+    main.appendChild(message);
     main.appendChild(secTowers);
     main.appendChild(divBarTitle);
 }

@@ -7,6 +7,9 @@ const end = document.getElementById('end');
 const restartBtn = document.getElementById('restart');
 const startBtn = document.getElementById('startGameBtn');
 const changeTower = document.querySelector('section#towers');
+const movementCounts = document.getElementById('movementCount');
+const victoryCounts = document.getElementById('victoryCount');
+const messages = document.getElementById('message');
 const cutState = 1;
 const pasteState = 2;
 let state = cutState;
@@ -14,9 +17,40 @@ let cTower = '';
 let cTowerWidth = 0;
 let disc;
 let movementCounting = 0;
+let childrenStart;
+let childrenOffset = 0;
+let childrenEnd = 0;
 let victoryCounting = 0;
 
 // FUNÇÕES
+// Incrementa movimentos do jogador
+const movementCount = () => {
+    let output = false;
+
+    if (childrenStart !== start.childElementCount) {
+        output = true;
+        childrenStart = start.childElementCount;
+    }
+
+    if (childrenOffset !== offset.childElementCount) {
+        output = true;
+        childrenOffset = offset.childElementCount;
+    }
+
+    if (childrenEnd !== end.childElementCount) {
+        output = true;
+        childrenEnd = end.childElementCount;
+    }
+
+    return output;
+}
+
+// Imprime mensagem
+const printMessage = (msg) => {
+    setTimeout(function () { messages.innerHTML = message }, 5000);
+    messages.innerHTML = '';
+}
+
 // Cria nova div com a classe de estilização definida
 const startDiscs = (n) => {
     let newDisc = document.createElement('div');
@@ -31,7 +65,8 @@ const startGame = () => {
     start.innerHTML = "";
 
     if (numberOfDisks.value > 8 || numberOfDisks.value < 3) {
-        alert('Please, pick a number between 3 and 8!');
+        setTimeout(function () { messages.innerHTML = "Please pick a number between 3 and 8!"}, 20);
+        setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
         numberOfDisks.value = 5;
         return;
     }
@@ -40,6 +75,10 @@ const startGame = () => {
         startDiscs(i);
     }
 
+    childrenStart = numberOfDisks.value;
+    childrenOffset = 0;
+    childrenEnd = 0;
+    movementCounting = 0;
     startBtn.setAttribute('disabled', 'disabled');
 };
 
@@ -95,16 +134,19 @@ const restartGame = () => {
     start.innerHTML = '';
     offset.innerHTML = '';
     end.innerHTML = '';
+    movementCounts.innerHTML = 0;
+    messages.innerHTML = '<br>';
     numberOfDisks.value = 5;
     startBtn.removeAttribute('disabled');
 };
 
 // Define a condição de vitória
 const playerWins = () => {
-    if (end.childElementCount == numberOfDisks.value){
-        setTimeout(function(){alert('You won!'); },20);
+    if (end.childElementCount == numberOfDisks.value) {
+        setTimeout(function () { messages.innerHTML = "You won!" }, 20);
         setTimeout(restartGame, 5000);
         victoryCounting++;
+        victoryCounts.innerHTML = victoryCounting;
     }
 };
 
@@ -119,6 +161,9 @@ changeTower.addEventListener('click', function (e) {
 
     if (target.tagName !== 'DIV') {
         console.log('erro 1');
+        state = cutState;
+        setTimeout(function () { messages.innerHTML = "Click in towers or discs"}, 20);
+        setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
         return
     }
 
@@ -131,12 +176,16 @@ changeTower.addEventListener('click', function (e) {
         if (target.lastElementChild !== null && target.lastElementChild.clientWidth < cTowerWidth) {
             console.log('erro 3');
             state = cutState;
+            setTimeout(function () { messages.innerHTML = "Ooops! You have to choose a bigger disc to put above"}, 20);
+            setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
         }
     }
 
     if (target.clientWidth !== towerWidth && target.clientWidth < cTowerWidth) {
         console.log('erro 4');
         state = cutState;
+        setTimeout(function () { messages.innerHTML = "Ooops! You have to choose a bigger disc to put above"}, 20);
+        setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
     }
 
     console.log(state)
@@ -152,7 +201,11 @@ changeTower.addEventListener('click', function (e) {
         newTower(target, cTower);
         state = cutState;
         cTowerWidth = 0;
+        if (movementCount()) {
+            movementCounting++;
+        }
     };
 
     playerWins();
+    movementCounts.innerHTML = movementCounting;
 });
