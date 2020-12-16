@@ -7,6 +7,8 @@
     <title>Tower of Hanoi</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="normalize.css">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -21,17 +23,34 @@
 
         <div id="inicio">
             <p id="textGame">
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Torre de Hanói é um "quebra-cabeça" que consiste em uma base contendo três pinos, em um dos quais são
                 dispostos alguns discos uns sobre os outros, em ordem crescente de diâmetro, de cima para baixo. O
                 problema consiste em passar todos os discos de um pino para outro qualquer, usando um dos pinos como
                 auxiliar, de maneira que um disco maior nunca fique em cima de outro menor em nenhuma situação. O número
-                de discos pode variar sendo que o mais simples contém apenas três.
-
+                de discos pode variar sendo que o mais simples contém apenas três. <br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 Atualmente, a Torre de Hanói tem sido tradicionalmente considerada como um procedimento para avaliação
-                da capacidade de memória de trabalho, e principalmente de planejamento e solução de problemas.
+                da capacidade de memória de trabalho, e principalmente de planejamento e solução de problemas. Abaixo há
+                uma foto de exemplo do jogo e em seguida as regras para jogar.
             </p>
 
-            <button id="initialButton">Inicialize Game</button>
+            <div id="infos">
+                <img src="example.jpg" width="450px" height="250px" alt="A example for Tower of Hanoi">
+
+                <div id="rules">
+                    <h2>Rules</h2>
+                    <ol>
+                        <li>Apenas um disco pode ser movido por vez.</li>
+                        <li>Cada movimento consiste de pegar o disco de cima de uma das pilhas e movê-lo para o topo de
+                            outra pilha.</li>
+                        <li>Nenhum disco pode ser colocado no topo de um disco menor.
+                        </li>
+                    </ol>
+                    
+                    <button id="initialButton">Inicialize Game</button>
+                </div>
+            </div>
 
         </div>
 
