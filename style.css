@@ -113,7 +113,7 @@ main div#menu div#divDisks button:hover {
     transition: 0.4s;
 }
 
-main div#menu div#divDisks button:disabled {
+main div#menu div#divDisks button#startGameBtn:disabled {
     cursor: not-allowed;
     background-color: gray;
     opacity: 0.4;

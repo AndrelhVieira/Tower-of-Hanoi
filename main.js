@@ -41,8 +41,6 @@ const startGame = () => {
         startDiscs(i);
     }
 
-    winningArray();
-
     startBtn.setAttribute('disabled', 'disabled');
 };
 
