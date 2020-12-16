@@ -13,6 +13,7 @@ const messages = document.getElementById('message');
 const cutState = 1;
 const pasteState = 2;
 const victoryMsg = "You won!";
+const errorDiscsMsg = "Please pick a number between 3 and 8!";
 const error1Msg = "Click in towers or discs";
 const error3Msg = "Ooops! You have to choose a bigger disc to put above";
 const error4Msg = "Ooops! You have to choose a bigger disc to put above";
@@ -69,8 +70,7 @@ const startGame = () => {
     start.innerHTML = "";
 
     if (numberOfDisks.value > 8 || numberOfDisks.value < 3) {
-        setTimeout(function () { messages.innerHTML = "Please pick a number between 3 and 8!"}, 20);
-        setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
+        printMessage(errorDiscsMsg, 'error');
         numberOfDisks.value = 5;
         return;
     }
@@ -141,6 +141,8 @@ const restartGame = () => {
     movementCounts.innerHTML = 0;
     messages.innerHTML = '<br>';
     numberOfDisks.value = 5;
+    messages.classList.remove('error');
+    messages.classList.remove('success');
     startBtn.removeAttribute('disabled');
     state = cutState;
 

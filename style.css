@@ -223,11 +223,22 @@ main div#message {
     border: none;
     font-weight: bold;
     background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
     text-transform: uppercase;
     margin: 0 auto;
-    width: 40vw;
+    width: 50vw;
+    text-align: center;
+}
+
+main p#instruction {
+    padding: 10px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    background-color: transparent;
+    color: #fff;
+    text-transform: uppercase;
+    margin: 10px auto;
+    width: 50vw;
     text-align: center;
 }
 
