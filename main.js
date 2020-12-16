@@ -135,7 +135,7 @@ const restartGame = () => {
     offset.innerHTML = '';
     end.innerHTML = '';
     movementCounts.innerHTML = 0;
-    messages.innerHTML = '';
+    messages.innerHTML = '<br>';
     numberOfDisks.value = 5;
     startBtn.removeAttribute('disabled');
 };
