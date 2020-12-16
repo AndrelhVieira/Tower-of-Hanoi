@@ -13,9 +13,8 @@ let state = cutState;
 let cTower = '';
 let cTowerWidth = 0;
 let disc;
-let winningCombination = [];
-let endCombination = [];
-
+let movementCounting = 0;
+let victoryCounting = 0;
 
 // FUNÇÕES
 // Cria nova div com a classe de estilização definida
@@ -40,8 +39,6 @@ const startGame = () => {
     for (let i = numberOfDisks.value; i > 0; i--) {
         startDiscs(i);
     }
-
-    winningArray();
 
     startBtn.setAttribute('disabled', 'disabled');
 };
@@ -105,8 +102,9 @@ const restartGame = () => {
 // Define a condição de vitória
 const playerWins = () => {
     if (end.childElementCount == numberOfDisks.value){
-        setTimeout(function(){alert('You won!'); },20)
+        setTimeout(function(){alert('You won!'); },20);
         setTimeout(restartGame, 5000);
+        victoryCounting++;
     }
 };
 
