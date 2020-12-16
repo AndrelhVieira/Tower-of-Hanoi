@@ -1,6 +1,6 @@
 body {
     background-image: linear-gradient(to right, blue, #880101);
-    background-size: cover;
+    background-attachment: fixed;
     font-family: 'Nunito', sans-serif;
     color: #fff;
 }
@@ -44,8 +44,9 @@ main button#initialButton:hover {
 
 main div#infos {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
-    width: 1000px;
+    width: 100%;
     margin: 25px auto;
     text-align: center;
     font-size: large;
@@ -53,6 +54,10 @@ main div#infos {
 
 main div#infos div#rules h2 {
     margin: 0;
+}
+
+main div#infos div#rules {
+    width: 450px;
 }
 
 main div#infos div#rules ol {
@@ -67,11 +72,18 @@ main div#infos div#rules ol {
 }
 
 main div#menu div#divDisks label {
-    font-size: x-large;
-    line-height: 30px;
     margin: 0 10px;
     display: inline-block;
-    vertical-align: middle;
+    padding: 15px;
+    outline: none;
+    border: none;
+    font-weight: bold;
+    background-color: transparent;
+    border: 2px solid #fff;
+    color: #fff;
+    text-transform: uppercase;
+    margin-right: 0;
+    border-right: none;
 }
 
 main div#menu div#divDisks input[type="number"] {
@@ -82,16 +94,9 @@ main div#menu div#divDisks input[type="number"] {
     background-color: transparent;
     border: 2px solid #fff;
     color: #fff;
-    text-transform: uppercase;
     margin: 0 10px;
     text-align: center;
-}
-
-main div#menu div#divDisks input[type="number"]:hover {
-    cursor: pointer;
-    box-shadow: 2px 2px 15px #fff;
-    transform: scale(1.1);
-    transition: 0.4s;
+    margin-left: 0;
 }
 
 main div#menu div#divDisks button {
@@ -134,6 +139,9 @@ main section#towers {
 main div.bar-title {
     font-weight: bold;
     margin: 25px 0;
+    display: flex;
+    justify-content: space-around;
+    font-size: 2rem;
 }
 
 #start, #offset, #end {
@@ -141,12 +149,6 @@ main div.bar-title {
     flex-direction: column-reverse;
     align-items: center;
     margin: 0 auto;
-}
-
-.bar-title {
-    display: flex;
-    justify-content: space-around;
-    font-size: 2rem;
 }
 
 .tower {
@@ -225,7 +227,7 @@ main div#message {
     background-color: transparent;
     text-transform: uppercase;
     margin: 0 auto;
-    width: 50vw;
+    width: 90vw;
     text-align: center;
 }
 
@@ -238,7 +240,7 @@ main p#instruction {
     color: #fff;
     text-transform: uppercase;
     margin: 10px auto;
-    width: 50vw;
+    width: 90vw;
     text-align: center;
 }
 
@@ -252,8 +254,8 @@ main p#instruction {
     box-shadow: 2px 2px 20px 10px #ec2b2b;
 }
 
-main div#divDisks span{
-    padding: 15px;
+main div#divDisks span {
+    padding: 13px;
     outline: none;
     border: none;
     font-weight: bold;
@@ -264,11 +266,79 @@ main div#divDisks span{
     margin: 0 10px 0 10px;
 }
 
-main div#divDisks span#movementLabel, main div#divDisks span#victoryLabel{
+main div#divDisks span#movementLabel, main div#divDisks span#victoryLabel {
     margin-right: 0;
 }
 
-main div#divDisks span#movementCount, main div#divDisks span#victoryCount{
+main div#divDisks span#movementCount, main div#divDisks span#victoryCount {
     margin-left: 0;
     border-left: none;
+}
+
+/* MEDIA QUERIES */
+
+/* Página inicial ou de apresentação */
+
+@media screen and (max-width: 1095px) {
+    main div#infos {
+        flex-direction: column;
+    }
+    main div#infos div#rules, main div#infos img {
+        display: block;
+        margin: 15px auto;
+    }
+}
+
+@media screen and (max-width: 530px) {
+    header h1 {
+        font-size: 35px;
+    }
+    main div#infos div#rules, main div#infos img {
+        width: 80%;
+        height: 80%;
+    }
+    main div#infos div#rules ol {
+        margin-left: 0;
+        padding-left: 0;
+        text-align: justify;
+    }
+    main div#inicio p#textGame {
+        padding: 0 50px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    main div#inicio p#textGame {
+        padding: 0 30px;
+    }
+}
+
+/* Página do jogo */
+
+@media screen and (max-width: 992px) {
+    main div#menu div#divDisks {
+        display: flex;
+        flex-wrap: wrap;
+        flex: 0 1 200px;
+        justify-content: center;
+    }
+    main div#menu div#divDisks label, main div#menu div#divDisks input#numberOfDisks, main div#menu div#divDisks button, main div#menu div#divDisks span {
+        margin: 5px 0;
+    }
+    main div#menu div#divDisks label {
+        font-size: 13px;
+        
+    }
+}
+
+@media screen and (max-width: 1050px) {
+    main section#towers {
+        flex-direction: column;
+    }
+    main section#towers div#start, main section#towers div#offset, main section#towers div#end {
+        margin: 15px auto;
+    }
+    main div.bar-title {
+        display: none;
+    }
 }
