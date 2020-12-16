@@ -12,6 +12,10 @@ const victoryCounts = document.getElementById('victoryCount');
 const messages = document.getElementById('message');
 const cutState = 1;
 const pasteState = 2;
+const victoryMsg = "You won!";
+const error1Msg = "Click in towers or discs";
+const error3Msg = "Ooops! You have to choose a bigger disc to put above";
+const error4Msg = "Ooops! You have to choose a bigger disc to put above";
 let state = cutState;
 let cTower = '';
 let cTowerWidth = 0;
@@ -46,9 +50,9 @@ const movementCount = () => {
 }
 
 // Imprime mensagem
-const printMessage = (msg) => {
-    setTimeout(function () { messages.innerHTML = message }, 5000);
-    messages.innerHTML = '';
+const printMessage = (msg, type) => {
+    setTimeout(function () { messages.innerHTML = `${msg}`; messages.classList.add(`${type}`); }, 20);
+    setTimeout(function () { messages.innerHTML = "<br>"; messages.classList.remove(`${type}`);}, 5000);
 }
 
 // Cria nova div com a classe de estilização definida
@@ -138,15 +142,18 @@ const restartGame = () => {
     messages.innerHTML = '<br>';
     numberOfDisks.value = 5;
     startBtn.removeAttribute('disabled');
+    state = cutState;
+
 };
 
 // Define a condição de vitória
 const playerWins = () => {
     if (end.childElementCount == numberOfDisks.value) {
-        setTimeout(function () { messages.innerHTML = "You won!" }, 20);
+        printMessage(victoryMsg, 'success');
         setTimeout(restartGame, 5000);
         victoryCounting++;
         victoryCounts.innerHTML = victoryCounting;
+        state = cutState;
     }
 };
 
@@ -160,39 +167,36 @@ changeTower.addEventListener('click', function (e) {
     target = e.target;
 
     if (target.tagName !== 'DIV') {
-        console.log('erro 1');
+        console.log('error 1');
         state = cutState;
-        setTimeout(function () { messages.innerHTML = "Click in towers or discs"}, 20);
-        setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
+        printMessage(error1Msg, 'error');
         return
     }
 
     if (target === cTower || target.parentNode === cTower) {
-        console.log('erro 2');
+        console.log('error 2');
         state = cutState;
     }
 
     if (target.clientWidth === towerWidth) {
         if (target.lastElementChild !== null && target.lastElementChild.clientWidth < cTowerWidth) {
-            console.log('erro 3');
+            console.log('error 3');
             state = cutState;
-            setTimeout(function () { messages.innerHTML = "Ooops! You have to choose a bigger disc to put above"}, 20);
-            setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
+            printMessage(error3Msg, 'error');
         }
     }
 
     if (target.clientWidth !== towerWidth && target.clientWidth < cTowerWidth) {
-        console.log('erro 4');
+        console.log('error 4');
         state = cutState;
-        setTimeout(function () { messages.innerHTML = "Ooops! You have to choose a bigger disc to put above"}, 20);
-        setTimeout(function () { messages.innerHTML = "<br>"}, 5000);
+        printMessage(error4Msg, 'error');
     }
 
     console.log(state)
     if (state === cutState) {
         cTower = currentTower(target);
         if (cTower === null) {
-            console.log('erro 5');
+            console.log('error 5');
             return
         }
         state = pasteState;
