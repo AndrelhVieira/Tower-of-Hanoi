@@ -53,7 +53,13 @@ const buildMenu = () => {
     divDivDisks.appendChild(victoryLabel);
     divDivDisks.appendChild(victoryCount);
     divMenu.appendChild(divDivDisks);
-    
+
+    ////////////////////////////////////////////////////
+
+    const instruction = document.createElement('p');
+    instruction.setAttribute('id', 'instruction');
+    instruction.innerHTML = 'Click in a Tower and then click in another Tower to move';
+
     ////////////////////////////////////////////////////
 
     const message = document.createElement('div');
@@ -105,6 +111,7 @@ const buildMenu = () => {
     ///////////////////////////////////////////////////
 
     main.appendChild(divMenu);
+    main.appendChild(instruction);
     main.appendChild(message);
     main.appendChild(secTowers);
     main.appendChild(divBarTitle);
