@@ -18,6 +18,7 @@ const buildMenu = () => {
     inputDivDisks.setAttribute('id', 'numberOfDisks');
     inputDivDisks.setAttribute('min', '3');
     inputDivDisks.setAttribute('max', '8');
+    inputDivDisks.setAttribute('value', '5');
 
     const btnDivDisks = document.createElement('button');
     btnDivDisks.setAttribute('id', 'startGameBtn');
